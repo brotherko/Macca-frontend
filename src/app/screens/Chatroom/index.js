@@ -13,17 +13,27 @@ export class Chatroom extends React.Component {
   state = {
     message: '',
     sender: 351, //set later
-    receiver: 352, //set later
+    chat_room: 352, //set later
+    id: 5,
   }
 
   _onSend = () => {
-    console.log(`Send: ${this.state.message}`)
-    // this.props.createMessageMutation({
-    //   variables: {
-    //     text: this.state.message,
-    //     sentById: this.props.userId
-    //   }
-    // })
+    
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    console.log(date)
+    this.props.insert_chat_messageMutation({
+      variables: {
+        message: this.state.message,
+        id: this.state.id,
+        sender: this.state.sender,
+        chat_id: this.state.chat_room,
+        created: date,
+      }
+    })
+    this.setState(state => {
+      id: state.id++;
+    })
   }
   _endRef = (element) => {
     this.endRef = element
@@ -75,4 +85,21 @@ const chats_message= gql`
   }
 `
 
-export default graphql(chats_message, {name: 'chats_messageQuery'})(Chatroom);
+const insert_chats_message = gql`
+  mutation insert_chats_message($id: Int!,$chat_id: Int!, $created: date!, $message: String!, $sender: Int!) {
+    insert_chats_message(objects: {id: $id, chat_id: $chat_id, created: $created, message: $message, sender: $sender}) {
+      returning {
+        chat_id
+        created
+        id
+        message
+        sender
+      }
+    }
+  }
+`
+
+export default compose(
+  graphql(chats_message, {name: 'chats_messageQuery'}),
+  graphql(insert_chats_message, {name: 'insert_chat_messageMutation'})
+)(Chatroom);
