@@ -29,19 +29,19 @@ export class Chatroom extends React.Component {
     this.endRef = element
   }
 
-  componentDidMount() {
-    this.createMessageSubscription = this.props.allMessagesQuery.subscribeToMore({
-      document: newMessageSubscription,
-      updateQuery: (previousState, {subscriptionData}) => {
-        const newMessage = subscriptionData.data.Message.node
-        const messages = previousState.allMessages.concat([newMessage])
-        return {
-          allMessages: messages
-        }
-      },
-      onError: (err) => console.error(err),
-    })
-  }
+  // componentDidMount() {
+  //   this.createMessageSubscription = this.props.chats_messageQuery.subscribeToMore({
+  //     document: newMessageSubscription,
+  //     updateQuery: (previousState, {subscriptionData}) => {
+  //       const newMessage = subscriptionData.data.Message.node
+  //       const messages = previousState.allMessages.concat([newMessage])
+  //       return {
+  //         allMessages: messages
+  //       }
+  //     },
+  //     onError: (err) => console.error(err),
+  //   })
+  // }
 
   render(){
     console.log(this.props)
@@ -68,9 +68,9 @@ const chats_message= gql`
     chats_message {
       message
       id
-      receiver
       sender
       created
+      chat_id
     }
   }
 `

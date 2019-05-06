@@ -4,13 +4,13 @@ import ChatMessage from "./ChatMessage"
 class ChatMessages extends Component {
     
     render() {
-      console.log(this.props.message)
+      console.log(this.props.messages)
       return (
         <div className='ChatMessages'>
           {this.props.messages.map((message, i) => {
             return (<ChatMessage
               key={i}
-              message={message.text}
+              message={message.message}
               // username={message.sentBy ? message.sentBy.name : 'Anonymous'}
               // time={message.createdAt}
             />)
