@@ -12,9 +12,13 @@ export class Chatroom extends React.Component {
 
   state = {
     message: '',
-    sender: 540, //set later
-    chat_room: 1, //set later
-    // id: 7,//set later
+    sender: 691, //set later
+    chat_id: null
+  }
+  componentDidMount(){
+    this.setState({
+      chat_id: this.props.location.state.chat_id
+    })
   }
 
   _onSend = () => {
@@ -40,7 +44,7 @@ export class Chatroom extends React.Component {
   }
 
   render(){
-    console.log(this.props)
+    console.log(this.state)
     return(
       <div>
         <h1>Chatroom</h1>
