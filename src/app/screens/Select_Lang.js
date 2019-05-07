@@ -8,10 +8,17 @@ import Select from 'react-select'
 export class Select_Lang extends React.Component{
 	state = {
 		native_lang: null,
-		target_lang: null
-	}
-	componentDidUpdate(){
-		const {list_languages} = this.props.list_languagesQuery
+    target_lang: null,
+    user_id: null
+  }
+  componentDidMount(){
+    this.setState({
+      user_id: this.getCookie('user_id')
+    })
+  }
+	componentWillUnmount(){
+    const {list_languages} = this.props.list_languagesQuery
+    
 		for(var i = 0; i < list_languages.length; i++){
 			var tmp = {
 				value: list_languages[i].id,
@@ -19,7 +26,22 @@ export class Select_Lang extends React.Component{
 			}
 			option.push(tmp)
 		}
-	}
+  }
+  getCookie = (cname) => {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 	handleNativeChange = (native_lang) => {
 		this.setState({native_lang});
@@ -34,14 +56,14 @@ export class Select_Lang extends React.Component{
 		this.props.insert_users_native_langsMutation({
 			variables: {
 				lang_id: this.state.native_lang.value,
-				user_id: 540
+				user_id: this.state.user_id
 			}
 		})
 		//mutate the target
 		this.props.insert_users_target_langsMutation({
 			variables: {
 				lang_id: this.state.target_lang.value,
-				user_id: 540
+				user_id: this.state.user_id
 			}
 		})
 		//go to search page
