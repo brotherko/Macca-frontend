@@ -9,6 +9,8 @@ import Chatroom from "./screens/Chatroom"
 import Select_Interest from './screens/Select_interest';
 import Select_Lang from './screens/Select_Lang';
 import Loading from './screens/loading';
+import Login from './screens/login';
+import New_user from './screens/new_user';
 
 const client = new ApolloClient({
   uri: "https://csci4140langex.herokuapp.com/v1alpha1/graphql"
@@ -19,6 +21,8 @@ class App extends React.Component {
     return(
       <ApolloProvider client={client}>
         <BrowserRouter>
+          <Route exact path="/" component={Login}/>
+          <Route path="/new_user" component={New_user}/>
           <Route path="/chatroom" component={Chatroom} />
           <Route path="/interest" component={Select_Interest}/>
           <Route path="/lang" component={Select_Lang}/>
