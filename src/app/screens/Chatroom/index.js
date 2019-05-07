@@ -5,14 +5,6 @@ import { graphql, compose } from 'react-apollo';
 import ChatInput from './components/ChatInput.js'
 import ChatMessages from './components/ChatMessages'
 import gql from 'graphql-tag';
-import { WebSocketLink } from 'apollo-link-ws';
-
-const wsLink = new WebSocketLink({
-  uri: `ws://csci4140langex.herokuapp.com/v1alpha1/graphql`,
-  options: {
-    reconnect: true
-  }
-});
 
 export class Chatroom extends React.Component {
   constructor(props){
