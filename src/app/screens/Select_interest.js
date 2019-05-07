@@ -41,7 +41,7 @@ export class Select_Interest extends React.Component {
 				})
 			}
 		}
-		//history.push("/language")
+		history.push("/lang")
 	}
 
 	render() {
