@@ -5,8 +5,29 @@ import gql from 'graphql-tag';
 export class Select_Interest extends React.Component {
 	state = {
 		interest: [],
-		user: 540
-	}
+		user: null
+  }
+  componentDidMount(){
+    this.setState({
+      user: this.getCookie('user_id')
+    })
+  }
+  getCookie = (cname) => {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
 	add_scale = (id) => {
 		var tmp = this.state.interest
 		if(this.state.interest[id]){
@@ -45,7 +66,8 @@ export class Select_Interest extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
+    // console.log(this.props);
+    console.log(document.cookie)
 		return(
 			<div>
 				<h1>Select your interest</h1>
