@@ -8,8 +8,9 @@ class ChatInput extends Component {
       <div className='ChatInput'>
         <input
           className='InputField'
-          placeholder='Enter your chat message...'
+          placeholder={this.props.placeHolder || 'Enter your chat message...'}
           type='text'
+          disabled={this.props.disable}
           value={this.props.message}
           autoFocus={true}
           onChange={(e) => this.props.onTextInput(e.target.value)}

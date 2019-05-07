@@ -4,6 +4,7 @@ import ChatMessage from "./ChatMessage"
 class ChatMessages extends Component {
     
     render() {
+      const {correction} = this.props
       console.log(this.props.messages)
       return (
         <div className='ChatMessages'>
@@ -13,11 +14,9 @@ class ChatMessages extends Component {
               <ChatMessage
                 key={i}
                 message={message.message}
-                // username={message.sentBy ? message.sentBy.name : 'Anonymous'}
-                // time={message.createdAt}
               />
               {message.sender != this.props.user_id
-                ?<p>Correction</p>
+                ?<button onClick={correction.bind(this, message)}>Correction</button>
                 :null
               }
             </div>
