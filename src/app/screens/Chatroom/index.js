@@ -12,9 +12,9 @@ export class Chatroom extends React.Component {
 
   state = {
     message: '',
-    sender: 351, //set later
-    chat_room: 352, //set later
-    id: 5,
+    sender: 540, //set later
+    chat_room: 1, //set later
+    // id: 7,//set later
   }
 
   _onSend = () => {
@@ -25,33 +25,19 @@ export class Chatroom extends React.Component {
     this.props.insert_chat_messageMutation({
       variables: {
         message: this.state.message,
-        id: this.state.id,
+        // id: this.state.id,
         sender: this.state.sender,
         chat_id: this.state.chat_room,
         created: date,
       }
     })
-    this.setState(state => {
-      id: state.id++;
-    })
+    // this.setState(state => {
+    //   id: state.id++;
+    // })
   }
   _endRef = (element) => {
     this.endRef = element
   }
-
-  // componentDidMount() {
-  //   this.createMessageSubscription = this.props.chats_messageQuery.subscribeToMore({
-  //     document: newMessageSubscription,
-  //     updateQuery: (previousState, {subscriptionData}) => {
-  //       const newMessage = subscriptionData.data.Message.node
-  //       const messages = previousState.allMessages.concat([newMessage])
-  //       return {
-  //         allMessages: messages
-  //       }
-  //     },
-  //     onError: (err) => console.error(err),
-  //   })
-  // }
 
   render(){
     console.log(this.props)
@@ -71,6 +57,20 @@ export class Chatroom extends React.Component {
       </div>
     )
   }
+
+  // componentDidMount() {
+  //   this.creat_sub_chats_message = this.props.chats_messageQuery.subscribeToMore({
+  //     document: sub_chats_message,
+  //     updateQuery: (previousState, {subscriptionData}) => {
+  //       const newMessage = subscriptionData.data.Message.node
+  //       const messages = previousState.allMessages.concat([newMessage])
+  //       return {
+  //         allMessages: messages
+  //       }
+  //     },
+  //     onError: (err) => console.error(err),
+  //   })
+  // }
 }
 
 const chats_message= gql`
@@ -86,8 +86,8 @@ const chats_message= gql`
 `
 
 const insert_chats_message = gql`
-  mutation insert_chats_message($id: Int!,$chat_id: Int!, $created: date!, $message: String!, $sender: Int!) {
-    insert_chats_message(objects: {id: $id, chat_id: $chat_id, created: $created, message: $message, sender: $sender}) {
+  mutation insert_chats_message($chat_id: Int!, $created: date!, $message: String!, $sender: Int!) {
+    insert_chats_message(objects: {chat_id: $chat_id, created: $created, message: $message, sender: $sender}) {
       returning {
         chat_id
         created
@@ -95,6 +95,18 @@ const insert_chats_message = gql`
         message
         sender
       }
+    }
+  }
+`
+
+const sub_chats_message = gql`
+  subscription {
+    chats_message {
+      chat_id
+      created
+      id
+      message
+      sender
     }
   }
 `
