@@ -80,6 +80,7 @@ export class Chatroom extends React.Component {
         <ChatMessages
           messages={this.props.chats_messageSub.chats_message || []}
           endRef={this._endRef}
+          user_id={this.state.sender}
         />
           <ChatInput
               message={this.state.message}
