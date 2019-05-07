@@ -4,10 +4,10 @@ import gql from 'graphql-tag';
 
 export class Select_Interest extends React.Component {
 	state = {
-		interest: []
+		interest: [],
+		user: 540
 	}
 	add_scale = (id) => {
-		console.log(id)
 		var tmp = this.state.interest
 		if(this.state.interest[id]){
 			if(tmp[id] < 5){
@@ -23,6 +23,27 @@ export class Select_Interest extends React.Component {
 		})
 		console.log(this.state.interest)
 	}
+
+	next_stage = () => {
+		const {history} = this.props
+		const {interest} = this.state
+		console.log("welcome")
+		//mutation the state to user_interest
+		for(var i = 0; i < interest.length; i++){
+			if(interest[i] > 0){
+				console.log(i+ ' : ' + interest[i])
+				this.props.insert_users_interestsMutation({
+					variables: {
+						interest_id: i,
+						score: interest[i],
+						user_id: this.state.user
+					}
+				})
+			}
+		}
+		//history.push("/language")
+	}
+
 	render() {
 		console.log(this.props);
 		return(
@@ -42,7 +63,7 @@ export class Select_Interest extends React.Component {
 					}
 				</div>
 				<br></br>
-				<button>Continue</button>
+				<button onClick={this.next_stage}>Continue</button>
 			</div>
 		)
 	}
@@ -57,9 +78,25 @@ const list_interest = gql`
 	}
 `
 
+const insert_users_interests = gql`
+	mutation insert_users_interests($interest_id: Int!, $score: Int!, $user_id: Int!) {
+		insert_users_interests(objects: {interest_id: $interest_id, score: $score, user_id: $user_id}) {
+			returning {
+				id
+				interest_id
+				user_id
+				name {
+					name
+				}
+				score
+			}
+		}
+	}
+`
+
 export default compose(
-  graphql(list_interest, {name: 'list_interestQuery'})
-  // graphql(insert_chats_message, {name: 'insert_chat_messageMutation'})
+  graphql(list_interest, {name: 'list_interestQuery'}),
+  graphql(insert_users_interests, {name: 'insert_users_interestsMutation'})
 )(Select_Interest);
 
 // export default graphql(list_interest, {name: 'list_interestQuery'})(Select_Interest)
