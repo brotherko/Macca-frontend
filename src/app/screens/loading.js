@@ -4,15 +4,18 @@ import gql from 'graphql-tag';
 
 import axios from 'axios';
 
-var link = 'https://dry-coast-85220.herokuapp.com/matching?user_id=' + 691;
 export default class Loading extends React.Component{
 
   state = {
-    chat_id: null
+    chat_id: null,
+    user_id: null,
   }
   
   componentDidMount() {
-    axios.get(link)
+    this.setState({
+      user_id: this.getCookie('user_id')
+    })
+    axios.get('https://dry-coast-85220.herokuapp.com/matching?user_id=' + this.getCookie('user_id'))
       .then(res => {
         // console.log(res.data.chat_id)
         this.setState({
@@ -21,13 +24,29 @@ export default class Loading extends React.Component{
       })
     //set time to redirect to chat room
     this.timer = setTimeout(()=>{
-      //redirect with chat_id
+      // redirect with chat_id
       this.props.history.push({
         pathname: '/chatroom',
         search: '?query=abc',
         state: { chat_id: this.state.chat_id }
       })
     },3000); 
+  }
+  
+  getCookie = (cname) => {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
   }
   render() {
     console.log(this.state)
