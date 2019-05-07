@@ -7,18 +7,29 @@ import ChatMessages from './components/ChatMessages'
 import gql from 'graphql-tag';
 
 
-
+var x = 9
 export class Chatroom extends React.Component {
+  constructor(props){
+    super(props)
+
+  }
   state = {
     message: '',
     sender: null, //set later
     chat_id: null
   }
+  
   componentDidMount(){
     this.setState({
-      chat_id: this.props.location.state.chat_id,
+      // chat_id: this.props.location.state.chat_id,
+      chat_id: 11,
       sender: this.getCookie('user_id')
     })
+    // this.props.chats_messageQuery({
+    //   variables: {
+    //     chat_id: this.state.chat_id
+    //   }
+    // })
   }
   getCookie = (cname) => {
     var name = cname + "=";
@@ -45,7 +56,7 @@ export class Chatroom extends React.Component {
         message: this.state.message,
         // id: this.state.id,
         sender: this.state.sender,
-        chat_id: this.state.chat_room,
+        chat_id: this.state.chat_id,
         created: date,
       }
     })
@@ -59,6 +70,7 @@ export class Chatroom extends React.Component {
 
   render(){
     console.log(this.state)
+    console.log(this.props)
     return(
       <div>
         <h1>Chatroom</h1>
@@ -76,26 +88,12 @@ export class Chatroom extends React.Component {
     )
   }
 
-  // componentDidMount() {
-  //   this.creat_sub_chats_message = this.props.chats_messageQuery.subscribeToMore({
-  //     document: sub_chats_message,
-  //     updateQuery: (previousState, {subscriptionData}) => {
-  //       const newMessage = subscriptionData.data.Message.node
-  //       const messages = previousState.allMessages.concat([newMessage])
-  //       return {
-  //         allMessages: messages
-  //       }
-  //     },
-  //     onError: (err) => console.error(err),
-  //   })
-  // }
 }
 
 const chats_message= gql`
-  query chats_message{
-    chats_message {
+  query chats_message($chat_id: Int!){
+    chats_message(where: {chat_id: { _eq: $chat_id}}) {
       message
-      id
       sender
       created
       chat_id
@@ -129,7 +127,47 @@ const sub_chats_message = gql`
   }
 `
 
+const chats_in_chatroom = gql`
+  query chats($chat_id: Int!){
+    chats(where: {chat_members: {chat_id: {_eq: $chat_id}}}) {
+      chat_members {
+        user_interests {
+          name {
+            name
+          }
+        }
+        user_id
+        users {
+          name
+        }
+      }
+    }
+  }
+`
+
 export default compose(
-  graphql(chats_message, {name: 'chats_messageQuery'}),
+  graphql(chats_message, 
+    {name: 'chats_messageQuery', 
+      options: (props) => {
+        console.log("aaa", props)
+        return{
+          variables: {
+            chat_id: props.location.state.chat_id
+          }
+        }
+      }
+    }),
+  graphql(chats_in_chatroom,
+    {
+      name: 'chats_in_chatroom',
+      options: (props) => {
+        return{
+          variables: {
+            chat_id: props.location.state.chat_id
+          }
+        }
+      }
+    }  
+  ),
   graphql(insert_chats_message, {name: 'insert_chat_messageMutation'})
 )(Chatroom);

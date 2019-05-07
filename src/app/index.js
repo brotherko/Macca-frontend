@@ -1,7 +1,9 @@
 import React from 'react';
-import ApolloClient from 'apollo-boost';
+import ApolloClient from "apollo-boost";
+import { InMemoryCache, HttpLink, split } from "apollo-boost"
 import { ApolloProvider } from 'react-apollo'
-// import { Router, Route, browserHistory } from "react-router"
+import { WebSocketLink } from "apollo-link-ws";
+import { getMainDefinition } from "apollo-utilities";
 import {Link, Route, BrowserRouter} from "react-router-dom"
 
 //screens

@@ -21,6 +21,7 @@ export default class Loading extends React.Component{
         this.setState({
           chat_id: res.data.chat_id
         })
+
       })
     //set time to redirect to chat room
     this.timer = setTimeout(()=>{
@@ -28,9 +29,9 @@ export default class Loading extends React.Component{
       this.props.history.push({
         pathname: '/chatroom',
         search: '?query=abc',
-        state: { chat_id: this.state.chat_id }
+        state: { chat_id: 11}
       })
-    },3000); 
+    },5000); 
   }
   
   getCookie = (cname) => {
