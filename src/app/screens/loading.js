@@ -29,7 +29,7 @@ export default class Loading extends React.Component{
       this.props.history.push({
         pathname: '/chatroom',
         search: '?query=abc',
-        state: { chat_id: 11}
+        state: { chat_id: this.state.chat_id}
       })
     },5000); 
   }

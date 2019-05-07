@@ -5,9 +5,15 @@ import { graphql, compose } from 'react-apollo';
 import ChatInput from './components/ChatInput.js'
 import ChatMessages from './components/ChatMessages'
 import gql from 'graphql-tag';
+import { WebSocketLink } from 'apollo-link-ws';
 
+const wsLink = new WebSocketLink({
+  uri: `ws://csci4140langex.herokuapp.com/v1alpha1/graphql`,
+  options: {
+    reconnect: true
+  }
+});
 
-var x = 9
 export class Chatroom extends React.Component {
   constructor(props){
     super(props)
@@ -21,8 +27,8 @@ export class Chatroom extends React.Component {
   
   componentDidMount(){
     this.setState({
-      // chat_id: this.props.location.state.chat_id,
-      chat_id: 11,
+      chat_id: this.props.location.state.chat_id,
+      // chat_id: 11,
       sender: this.getCookie('user_id')
     })
     // this.props.chats_messageQuery({
@@ -60,9 +66,6 @@ export class Chatroom extends React.Component {
         created: date,
       }
     })
-    // this.setState(state => {
-    //   id: state.id++;
-    // })
   }
   _endRef = (element) => {
     this.endRef = element
@@ -75,7 +78,7 @@ export class Chatroom extends React.Component {
       <div>
         <h1>Chatroom</h1>
         <ChatMessages
-          messages={this.props.chats_messageQuery.chats_message || []}
+          messages={this.props.chats_messageSub.chats_message || []}
           endRef={this._endRef}
         />
           <ChatInput
@@ -116,13 +119,12 @@ const insert_chats_message = gql`
 `
 
 const sub_chats_message = gql`
-  subscription {
-    chats_message {
-      chat_id
-      created
-      id
+  subscription chats_message($chat_id: Int!){
+    chats_message(where: {chat_id: { _eq: $chat_id}}) {
       message
       sender
+      created
+      chat_id
     }
   }
 `
@@ -169,5 +171,16 @@ export default compose(
       }
     }  
   ),
-  graphql(insert_chats_message, {name: 'insert_chat_messageMutation'})
+  graphql(insert_chats_message, {name: 'insert_chat_messageMutation'}),
+  graphql(sub_chats_message, 
+    {name: 'chats_messageSub', 
+      options: (props) => {
+        console.log("bbb", props)
+        return{
+          variables: {
+            chat_id: props.location.state.chat_id
+          }
+        }
+      }
+    }),
 )(Chatroom);

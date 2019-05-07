@@ -14,19 +14,10 @@ export class Select_Lang extends React.Component{
   componentDidMount(){
     this.setState({
       user_id: this.getCookie('user_id')
-    })
+		})
+
   }
-	componentWillUnmount(){
-    const {list_languages} = this.props.list_languagesQuery
-    
-		for(var i = 0; i < list_languages.length; i++){
-			var tmp = {
-				value: list_languages[i].id,
-				label: list_languages[i].name
-			}
-			option.push(tmp)
-		}
-  }
+
   getCookie = (cname) => {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -71,9 +62,10 @@ export class Select_Lang extends React.Component{
 	}
 	render(){
 		const {native_lang, target_lang} = this.state
-		console.log(this.state)
-		console.log(this.props)
+		const { list_languages } = this.props.list_languagesQuery;
+		let option = list_languages ? Object.keys(list_languages).map( k => ({ label: list_languages[k].name, value: list_languages[k].id })) : [];
 
+    
 		return(
 			<div>
 				<h1>Select Language</h1>
@@ -96,8 +88,7 @@ export class Select_Lang extends React.Component{
 				<button onClick={this.handleFind}>Search for your buddy</button>
 			</div>
 		)
-	}
-}
+	} }
 
 const list_languages = gql`
 	query list_languages{
@@ -107,7 +98,7 @@ const list_languages = gql`
 		}
 	}
 `
-const option = []
+
 
 const insert_users_native_langs = gql`
 	mutation insert_users_native_langs ($lang_id: Int!, $user_id: Int!){
