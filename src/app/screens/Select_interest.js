@@ -7,7 +7,22 @@ export class Select_Interest extends React.Component {
 	render() {
 		console.log(this.props);
 		return(
-			<h1>hi</h1>
+			<div>
+				<h1>Select your interest</h1>
+				<div className="interest_field">
+					{this.props.list_interestQuery.list_interests
+						?<div>
+							{this.props.list_interestQuery.list_interests.map((interest, i) => {
+								return(
+									<button key={i}>{interest.name}</button>
+								)
+							})
+						}
+						</div>
+						:null
+					}
+				</div>
+			</div>
 		)
 	}
 }
