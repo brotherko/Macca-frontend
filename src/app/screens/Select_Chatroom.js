@@ -26,7 +26,7 @@ export class Select_Chatroom extends React.Component{
 							chats_members.map((chatroom, i) => {
 								return(
 									<div>
-										<a key={i} onClick={this.goto_chatroom.bind(this, chatroom.chat_id)}>{chatroom.chat_id}</a>
+										<button key={i} onClick={this.goto_chatroom.bind(this, chatroom.chat_id)}>{chatroom.chat_id}</button>
 									</div>
 								)
 							})
