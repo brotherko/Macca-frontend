@@ -9,18 +9,32 @@ import gql from 'graphql-tag';
 
 
 export class Chatroom extends React.Component {
-
   state = {
     message: '',
-    sender: 691, //set later
+    sender: null, //set later
     chat_id: null
   }
   componentDidMount(){
     this.setState({
-      chat_id: this.props.location.state.chat_id
+      chat_id: this.props.location.state.chat_id,
+      sender: this.getCookie('user_id')
     })
   }
-
+  getCookie = (cname) => {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
   _onSend = () => {
     
     var today = new Date();
