@@ -6,6 +6,7 @@ import {Link, Route, BrowserRouter} from "react-router-dom"
 
 //screens
 import Chatroom from "./screens/Chatroom"
+import Select_Interest from './screens/Select_interest';
 
 const client = new ApolloClient({
   uri: "https://csci4140langex.herokuapp.com/v1alpha1/graphql"
@@ -17,6 +18,7 @@ class App extends React.Component {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Route path="/chatroom" component={Chatroom} />
+          <Route path="/interest" component={Select_Interest}/>
         </BrowserRouter>
       </ApolloProvider>
     )
