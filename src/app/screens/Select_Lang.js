@@ -45,7 +45,7 @@ export class Select_Lang extends React.Component{
 			}
 		})
 		//go to search page
-    history.push('/loading')
+    this.props.history.push('/loading')
 	}
 	render(){
 		const {native_lang, target_lang} = this.state
