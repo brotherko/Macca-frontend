@@ -10,15 +10,17 @@ class ChatMessages extends Component {
           {this.props.messages.map((message, i) => {
             return (
             <div className={message.sender != this.props.user_id ? 'incoming_msg' : 'sender_msg'}>
-              <ChatMessage
-                key={i}
-                message={message.message}
-                message_id={message.id}
-              />
-              {message.sender != this.props.user_id
+              <div onClick={correction.bind(this, message)}>
+                <ChatMessage
+                  key={i}
+                  message={message.message}
+                  message_id={message.id}
+                />
+              </div>
+              {/* {message.sender != this.props.user_id
                 ?<button onClick={correction.bind(this, message)}>Correction</button>
                 :null
-              }
+              } */}
             </div>
             )
           })}

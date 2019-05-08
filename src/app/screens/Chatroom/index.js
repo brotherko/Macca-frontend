@@ -96,34 +96,36 @@ export class Chatroom extends React.Component {
   render(){
     const {chats} = this.props.chats_in_chatroom
     return(
-      <div>
+      <div class="chatroom">
         <h1>Chatroom</h1>
-        <InterestDiff
-          members={chats ? chats[0].chat_members : null}
-        />
-        <ChatMessages
-          messages={this.props.chats_messageSub.chats_message || []}
-          endRef={this._endRef}
-          correction={this.correction}
-          user_id={this.state.sender}
-        />
-        <ChatInput
-          message={this.state.message}
-          onTextInput={(message) => this.setState({message})}
-          onResetText={() => this.setState({message: ''})}
-          onSend={this._onSend}
-          disable={false}
-          
-        />
-        <ChatInput
-          message={this.state.correct_message}
-          onTextInput={(correct_message) => this.setState({correct_message})}
-          onResetText={() => this.setState({correct_message: ''})}
-          onSend={this._onCorrectionSend}
-          disable={!this.state.correct_message_id}
-          placeHolder='Correction'
-        />
+        <div class="content">
+          <InterestDiff
+            members={chats ? chats[0].chat_members : null}
+          />
+          <ChatMessages
+            messages={this.props.chats_messageSub.chats_message || []}
+            endRef={this._endRef}
+            correction={this.correction}
+            user_id={this.state.sender}
+          />
+          <ChatInput
+            message={this.state.message}
+            onTextInput={(message) => this.setState({message})}
+            onResetText={() => this.setState({message: ''})}
+            onSend={this._onSend}
+            disable={false}
+            
+          />
+          <ChatInput
+            message={this.state.correct_message}
+            onTextInput={(correct_message) => this.setState({correct_message})}
+            onResetText={() => this.setState({correct_message: ''})}
+            onSend={this._onCorrectionSend}
+            disable={!this.state.correct_message_id}
+            placeHolder='Correction'
+          />
       </div>
+    </div>
     )
   }
 
