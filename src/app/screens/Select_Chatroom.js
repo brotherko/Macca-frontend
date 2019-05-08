@@ -66,7 +66,7 @@ export class Select_Chatroom extends React.Component{
 				<div class="content">
 					{chats_list}
 					<div class="right-wrapper">
-						<button class="big-button full" onClick={this.find_new_chatroom}>Search for new buddy</button>
+						<button class="big-button full" onClick={this.find_new_chatroom} disabled={!this.props.search}>Search for new buddy</button>
 					</div>
 				</div>
 			</div>
