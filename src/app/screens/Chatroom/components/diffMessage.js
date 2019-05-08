@@ -11,7 +11,7 @@ export default class DiffMessage extends Component{
     var color = '', span=''
     var diff_result = diff.diffChars(message, corr_message)
       return(
-        <div id="display_diff">
+        <div class="display_diff">
           {Object.keys(diff_result).map( i => {
               if(diff_result[i].added){
                 return(

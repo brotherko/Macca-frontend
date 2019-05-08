@@ -17,6 +17,7 @@ import Loading from './screens/loading';
 import Login from './screens/login';
 import New_user from './screens/new_user';
 import Select_Chatroom from './screens/Select_Chatroom';
+import CorrectionField from './screens/Chatroom/components/CorrectionField';
 
 // const client = new ApolloClient({
 //   uri: "https://csci4140langex.herokuapp.com/v1alpha1/graphql"
@@ -57,6 +58,7 @@ class App extends React.Component {
             className="wrapper"
           >
           <Route exact path="/" component={Login}/>
+          <Route path="/corr" component={CorrectionField}/>
           <Route path="/select_chatroom" component={Select_Chatroom}/>
           <Route path="/new_user" component={New_user}/>
           <Route path="/chatroom" component={Chatroom} />

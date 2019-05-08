@@ -11,10 +11,15 @@ class ChatMessage extends Component {
     }
   }
   
-  change_show = () => {
-    this.setState(state => ({
-      show: !state.show
-    }))
+  change_show = (id) => {
+    // this.setState(state => ({
+    //   show: !state.show
+    // }))
+    this.props.history.push({
+      pathname: '/corr',
+      search: '?query=abc',
+      state: { message_id: id}
+    })
   }
   render() {
     const { chats_correction } = this.props.chats_correctionSub
@@ -27,10 +32,11 @@ class ChatMessage extends Component {
       ))
     )
     : null
+    console.log(this.props)
     return (
       <div className='ChatMessage'>
         {chats_correction && chats_correction.length > 0
-          ?<div onClick={this.change_show} className="latest_message">
+          ?<div onClick={this.change_show.bind(this, this.props.message_id)} className="latest_message">
             <DiffMessage
               corr_message={chats_correction[chats_correction.length-1].corrected_message}
               message={this.props.message}

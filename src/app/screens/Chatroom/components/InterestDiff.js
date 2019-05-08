@@ -24,7 +24,6 @@ export default class InterestDiff extends Component{
 				}
 				if(eq_interest == members.length){
 					var tmp = members[0].user_interests[i].name.name
-					console.log(tmp)
 					this.setState({
 						interest_id: this.state.interest_list.push(tmp)
 					})
@@ -40,8 +39,6 @@ export default class InterestDiff extends Component{
 		}
 	}
 	render(){
-		console.log(this.state)
-		console.log(this.props)
 		return(
 			<div>
 				Common interest in this room is 

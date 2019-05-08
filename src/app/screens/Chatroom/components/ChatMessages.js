@@ -14,6 +14,7 @@ class ChatMessages extends Component {
                 key={i}
                 message={message.message}
                 message_id={message.id}
+                history={this.props.history}
               />
               {message.sender != this.props.user_id
                 ?<button onClick={correction.bind(this, message)}>Correction</button>

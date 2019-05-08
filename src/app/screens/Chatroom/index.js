@@ -106,6 +106,7 @@ export class Chatroom extends React.Component {
           endRef={this._endRef}
           correction={this.correction}
           user_id={this.state.sender}
+          history={this.props.history}
         />
         <ChatInput
           message={this.state.message}
