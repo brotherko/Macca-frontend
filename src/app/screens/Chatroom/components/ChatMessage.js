@@ -2,6 +2,7 @@ import React, { Component} from 'react'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import DiffMessage from './diffMessage';
+import { isParenthesizedExpression } from '@babel/types';
 
 class ChatMessage extends Component {
   constructor(props){
@@ -41,7 +42,7 @@ class ChatMessage extends Component {
               message={this.props.message}
             />
           </div>
-          :<div className='Message'>{this.props.message}</div>
+          :<div className='Message' onClick={this.change_show.bind(this, this.props.message_id)}>{this.props.message}</div>
         }
         {this.state.show
           ?<div>
