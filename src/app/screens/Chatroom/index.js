@@ -98,8 +98,8 @@ export class Chatroom extends React.Component {
     const {chats} = this.props.chats_in_chatroom
     return(
       <div>
-        <Link to='/select_chatroom'>Back</Link>
-        <h1>Chatroom</h1>
+        <h1><Link to='/select_chatroom'><i class="arrow left"></i></Link>Chatroom</h1>
+        <div className="content">
         <InterestDiff
           members={chats ? chats[0].chat_members : null}
         />
@@ -117,14 +117,6 @@ export class Chatroom extends React.Component {
           onSend={this._onSend}
           disable={false}
           
-        />
-        <ChatInput
-          message={this.state.correct_message}
-          onTextInput={(correct_message) => this.setState({correct_message})}
-          onResetText={() => this.setState({correct_message: ''})}
-          onSend={this._onCorrectionSend}
-          disable={!this.state.correct_message_id}
-          placeHolder='Correction'
         />
       </div>
     </div>

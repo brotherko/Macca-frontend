@@ -40,15 +40,17 @@ export default class InterestDiff extends Component{
 	}
 	render(){
 		return(
-			<div>
-				Common interest in this room is 
+			<div class="common_interest">
+			 <div class="message">
+			 🥳All of you guys are interested in 
 				{this.state.interest_list.map((name, i) => {
 					return(
-						<span> {name}</span>
+						<span> {name} {this.state.interest_list.length-1 != i ? " and " : ''}</span>
 					)
 				})
 					
 				}
+			 </div>
 			</div>
 		)
 	}

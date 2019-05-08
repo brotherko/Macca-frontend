@@ -191,7 +191,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
 
 .ChatMessage > div{
   padding: 10px;
-  margin: 0px 0px 5px 0px;
+  margin: 0px 0px 10px 0px;
   min-width: 80px;
   max-width:200px;
   border-radius: 13px;
@@ -228,6 +228,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
   color: #a9a9a9;;
 }
 
-#display_diff > div{
+.display_diff > div{
   display:inline
+}
+.ChatInput {
+}
+.common_interest{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.common_interest > div {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+i {
+  border: solid #fff;
+  border-width: 0 4px 4px 0px;
+  display: inline-block;
+  padding: 3px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
