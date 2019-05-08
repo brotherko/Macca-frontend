@@ -5,7 +5,6 @@ class ChatMessages extends Component {
     
     render() {
       const {correction} = this.props
-      console.log(this.props.messages)
       return (
         <div className='ChatMessages'>
           {this.props.messages.map((message, i) => {

@@ -93,6 +93,8 @@ export class Chatroom extends React.Component {
   }
 
   render(){
+    const {chats_in_chatroom} = this.props
+    console.log(chats_in_chatroom)
     return(
       <div>
         <h1>Chatroom</h1>
@@ -179,6 +181,7 @@ const chats_in_chatroom = gql`
     chats(where: {chat_members: {chat_id: {_eq: $chat_id}}}) {
       chat_members {
         user_interests {
+          interest_id
           name {
             name
           }

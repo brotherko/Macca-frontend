@@ -15,7 +15,6 @@ class ChatMessage extends Component {
     this.setState(state => ({
       show: !state.show
     }))
-    console.log("hi")
   }
   render() {
     const { chats_correction } = this.props.chats_correctionSub
@@ -28,7 +27,6 @@ class ChatMessage extends Component {
       ))
     )
     : null
-    console.log(this.state.show)
     return (
       <div className='ChatMessage'>
         {chats_correction && chats_correction.length > 0
