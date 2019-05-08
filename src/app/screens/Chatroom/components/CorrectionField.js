@@ -61,7 +61,6 @@ export class CorrectionField extends Component{
       ))
     )
 		: null
-		console.log(this.state)
 		return(
 			<div>
 				<button onClick={this.go_back}>Back</button>

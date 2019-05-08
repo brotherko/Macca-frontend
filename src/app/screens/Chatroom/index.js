@@ -228,7 +228,7 @@ export default compose(
       options: (props) => {
         return{
           variables: {
-            chat_id: 11
+            chat_id: props.location.state.chat_id
           }
         }
       }
