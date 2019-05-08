@@ -6,6 +6,7 @@ import ChatInput from './components/ChatInput.js'
 import ChatMessages from './components/ChatMessages'
 import gql from 'graphql-tag';
 import InterestDiff from "./components/InterestDiff.js";
+import {Link} from "react-router-dom"
 
 export class Chatroom extends React.Component {
   constructor(props){
@@ -98,6 +99,7 @@ export class Chatroom extends React.Component {
     console.log(chats)
     return(
       <div>
+        <Link to='/select_chatroom'>Back</Link>
         <h1>Chatroom</h1>
         <InterestDiff
           members={chats == [] ? chats[0].chat_members : null}
