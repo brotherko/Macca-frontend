@@ -63,10 +63,12 @@ label{
   height: 100%;
   width:100%;
 }
+
 .right-wrapper{
   text-align: right;
   padding: 10px 0px;
 }
+
 textarea, input, button, select {
   outline: none;
   -webkit-appearance: none;
@@ -135,4 +137,29 @@ input[type=text] {
 }
 .interest_select.s-5{
   background:#EB514D
+}
+
+.chatroom_list {
+
+}
+
+.chatroom_list .item {
+  background: #FFF;
+  padding: 10px;
+  color: #000;
+  margin: 10px 0px;
+}
+
+.chatroom_list .member {
+  display:inline-block;
+  text-align: center;
+  margin: 0px 5px;
+}
+
+.chatroom_list .member img{
+  margin-bottom: 7px;
+  display: block;
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
 }

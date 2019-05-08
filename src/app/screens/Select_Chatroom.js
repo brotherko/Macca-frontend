@@ -18,26 +18,45 @@ export class Select_Chatroom extends React.Component{
 	}
 
 	render() {
-		const {chats_members} = this.props.get_chatroomQuery;
+		const { chats } = this.props.get_chatroomQuery;
+		const chats_list = chats ? chats.map(({ id, chat_members, chat_messages }, i) => {
+			console.log(chat_messages)
+			const last_message = chat_messages[0];
+			const last_message_list = last_message 
+			? last_message.user.name + " : " + last_message.message 
+			: "No message"
+			const chat_members_list = chat_members.map(({ users }) => {
+				let user = users[0];
+				return (
+					<div className="member">
+						<img src={user.icon} />
+						<span>{user.name}</span>
+					</div>
+				)
+			})
+			return (
+					<div 
+						key={i}
+						onClick={this.goto_chatroom.bind(this, id)}
+						className="item"
+					>
+						<div class="last_message">
+							{last_message_list}
+						</div>
+						<div class="members">
+							{chat_members_list}
+						</div>
+					</div>
+			)
+		}) : null
 		console.log(this.props)
 		return(
-			<div>
+			<div class="chatroom_list">
 				<h1>Select Chatrooms</h1>
-				{chats_members
-					?<div>
-						{
-							chats_members.map((chatroom, i) => {
-								return(
-									<div>
-										<button key={i} onClick={this.goto_chatroom.bind(this, chatroom.chat_id)}>{chatroom.chat_id}</button>
-									</div>
-								)
-							})
-						}
-					</div>
-					:null
-				}
-				<button onClick={this.find_new_chatroom}>Search your new buddy</button>
+				<div class="content">
+					{chats_list}
+					<button onClick={this.find_new_chatroom}>Search your new buddy</button>
+				</div>
 			</div>
 		)
 	}
@@ -45,8 +64,21 @@ export class Select_Chatroom extends React.Component{
 
 const get_chatroom = gql`
 	query chats_members($user_id: Int!){
-		chats_members(where: {user_id: {_eq: $user_id}}) {
-			chat_id
+		chats(where: {chat_members: {user_id: {_eq: $user_id}}}) {
+			chat_messages(limit: 1, order_by: {created: desc}) {
+				message
+				created
+				user {
+					name
+				}
+			}
+			chat_members {
+				users {
+					name
+					icon
+				}
+			}
+			id
 		}
 	}
 `
