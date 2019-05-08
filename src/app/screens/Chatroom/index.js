@@ -96,13 +96,14 @@ export class Chatroom extends React.Component {
 
   render(){
     const {chats} = this.props.chats_in_chatroom
+    console.log(chats)
     return(
       <div>
         <h1><Link to='/select_chatroom'><i class="arrow left"></i></Link>Chatroom</h1>
         <div className="content">
-        {chats
+        {chats != null
           ?<InterestDiff
-            members={chats ? chats[0].chat_members : null}
+            members={chats[0].chat_members}
           />
           :null
         }
