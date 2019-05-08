@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import DiffMessage from './diffMessage';
 
 class ChatMessage extends Component {
   constructor(props){
@@ -18,6 +19,15 @@ class ChatMessage extends Component {
   }
   render() {
     const { chats_correction } = this.props.chats_correctionSub
+    const k = chats_correction ? (
+      chats_correction.map((corr, i) => (
+          <DiffMessage
+            message={this.props.message}
+            corr_message={corr.corrected_message}
+          />
+      ))
+    )
+    : null
     console.log(this.state.show)
     return (
       <div className='ChatMessage'>
@@ -30,18 +40,7 @@ class ChatMessage extends Component {
         {this.state.show
           ?<div>
             <div className='Message'>Original: {this.props.message}</div>
-            {chats_correction
-              ?<div>
-                {
-                  chats_correction.map((corr, i) => {
-                    return(
-                      <div>Correction: {corr.corrected_message}</div>
-                    )
-                  })
-                }
-              </div>
-              :null
-            }
+            {k}
           </div>
           :null
 
