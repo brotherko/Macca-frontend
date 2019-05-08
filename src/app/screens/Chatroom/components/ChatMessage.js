@@ -3,29 +3,50 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class ChatMessage extends Component {
-
+  constructor(props){
+    super(props)
+    this.state = {
+      show :false
+    }
+  }
+  
+  change_show = () => {
+    this.setState(state => ({
+      show: !state.show
+    }))
+    console.log("hi")
+  }
   render() {
     const { chats_correction } = this.props.chats_correctionSub
-    
+    console.log(this.state.show)
     return (
       <div className='ChatMessage'>
-        {/* <div className='MessageHeader'>
-          <div className='Username'>{this.props.username}</div>
-          <div className='Time'>({ago})</div>
-        </div> */}
-        <div className='Message'>{this.props.message}</div>
-        {chats_correction
+        {chats_correction && chats_correction.length > 0
+          ?<div onClick={this.change_show} className="latest_message">
+            {chats_correction[chats_correction.length-1].corrected_message}
+          </div>
+          :<div className='Message'>{this.props.message}</div>
+        }
+        {this.state.show
           ?<div>
-            {
-              chats_correction.map((corr, i) => {
-                return(
-                  <div>Correction: {corr.corrected_message}</div>
-                )
-              })
+            <div className='Message'>Original: {this.props.message}</div>
+            {chats_correction
+              ?<div>
+                {
+                  chats_correction.map((corr, i) => {
+                    return(
+                      <div>Correction: {corr.corrected_message}</div>
+                    )
+                  })
+                }
+              </div>
+              :null
             }
           </div>
           :null
+
         }
+        
       </div>
     )
   }
