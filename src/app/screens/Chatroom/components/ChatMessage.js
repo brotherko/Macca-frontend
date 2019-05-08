@@ -32,7 +32,6 @@ class ChatMessage extends Component {
       ))
     )
     : null
-    console.log(this.props)
     return (
       <div className='ChatMessage'>
         {chats_correction && chats_correction.length > 0
