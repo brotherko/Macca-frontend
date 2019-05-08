@@ -33,6 +33,7 @@ class ChatMessage extends Component {
       ))
     )
     : null
+    console.log(this.props)
     return (
       <div className='ChatMessage'>
         {chats_correction && chats_correction.length > 0
@@ -42,7 +43,7 @@ class ChatMessage extends Component {
               message={this.props.message}
             />
           </div>
-          :<div className='Message' onClick={this.change_show.bind(this, this.props.message_id)}>{this.props.message}</div>
+          :<div className='Message' onClick={this.props.corr ? this.change_show.bind(this, this.props.message_id) :null}>{this.props.message}</div>
         }
         {this.state.show
           ?<div>
