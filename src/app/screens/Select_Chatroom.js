@@ -75,7 +75,7 @@ export class Select_Chatroom extends React.Component{
 }
 
 const get_chatroom = gql`
-	query chats_members($user_id: Int!){
+	subscription chats_members($user_id: Int!){
 		chats(where: {chat_members: {user_id: {_eq: $user_id}}}) {
 			chat_messages(limit: 1, order_by: {created: desc}) {
 				message
