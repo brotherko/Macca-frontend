@@ -15,15 +15,15 @@ export default class DiffMessage extends Component{
           {Object.keys(diff_result).map( i => {
               if(diff_result[i].added){
                 return(
-                  <div className="added">{diff_result[i].value} </div>
+                  <div className="added">{diff_result[i].value}</div>
                 )
               }else if(diff_result[i].removed){
                 return(
-                  <div className="removed">{diff_result[i].value} </div>
+                  <div className="removed">{diff_result[i].value}</div>
                 ) 
               }else{
                 return(
-                  <div className="normal">{diff_result[i].value} </div>
+                  <div className="normal">{diff_result[i].value}</div>
                 )
               }
             }
