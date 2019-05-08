@@ -7,7 +7,6 @@ export class Select_Chatroom extends React.Component{
 		super(props)
 	}
 	goto_chatroom = (chat_id) => {
-		console.log(chat_id)
 		this.props.history.push({
 			pathname: '/chatroom',
 			state: { chat_id: chat_id}
@@ -21,9 +20,7 @@ export class Select_Chatroom extends React.Component{
 
 	render() {
 		const { chats } = this.props.get_chatroomQuery;
-		console.log('dllm', chats)
 		const chats_list = (chats != null) ? (chats.length >0) ? chats.map(({ id, chat_members, chat_messages }, i) => {
-			console.log(chat_messages)
 			const last_message = chat_messages[0];
 			const last_message_list = last_message 
 			? last_message.user.name + " : " + last_message.message 
@@ -37,7 +34,6 @@ export class Select_Chatroom extends React.Component{
 					</div>
 				)
 			})
-			console.log(this.props)
 			return (
 					<div 
 						key={i}
@@ -59,7 +55,6 @@ export class Select_Chatroom extends React.Component{
 		: (
 			<div>You havn't join any chatrooms yet. Let's do it by clicking the button below.</div>
 		)
-		console.log(this.props)
 		return(
 			<div class="chatroom_list">
 				<h1>Select Chatrooms</h1>
@@ -113,7 +108,6 @@ const getCookie = (cname) => {
 export default graphql(get_chatroom, {
 	name: "get_chatroomQuery",
 	options: () => {
-		console.log(getCookie("user_id"))
 		return{
 			variables: {
 				user_id: getCookie("user_id")

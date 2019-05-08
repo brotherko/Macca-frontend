@@ -46,17 +46,14 @@ export class Select_Interest extends React.Component {
 		this.setState({
 			interest: tmp
 		})
-		console.log(this.state.interest)
 	}
 
 	next_stage = () => {
 		const {history} = this.props
 		const {interest} = this.state
-		console.log("welcome")
 		//mutation the state to user_interest
 		for(var i = 0; i < interest.length; i++){
 			if(interest[i] > 0){
-				console.log(i+ ' : ' + interest[i])
 				this.props.insert_users_interestsMutation({
 					variables: {
 						interest_id: i,
@@ -70,8 +67,6 @@ export class Select_Interest extends React.Component {
 	}
 
 	render() {
-    // console.log(this.props);
-    console.log(document.cookie)
 		return(
 			<div>
 				<h1>Select your interest</h1>

@@ -10,7 +10,6 @@ export class New_user extends React.Component{
 	
 	handleSubmit = (e) => {
 		const {cookies} = this.props
-		console.log(this.state.name)
 		e.preventDefault();
 		//insert the name
 		this.props.insert_usersMutation({
@@ -48,7 +47,6 @@ export class New_user extends React.Component{
 	}
 
 	render(){
-		console.log(this.props)
 		return(
 			<div className="register content">
 				<h1>Your Name?</h1>
