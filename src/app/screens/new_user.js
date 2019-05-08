@@ -49,7 +49,7 @@ export class New_user extends React.Component{
 	render(){
 		return(
 			<div className="register content">
-				<h1>Your Name?</h1>
+				<h1>Username</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" value={this.state.name} onChange={this.handleChange}></input>
 					<div class="right-wrapper">

@@ -53,10 +53,12 @@ export class CorrectionField extends Component{
 		const { chats_correction } = this.props.chats_correctionSub
     const k = chats_correction && this.props.current_msgSub.chats_message ? (
       chats_correction.map((corr, i) => (
+				<div className="correct_msg">
           <DiffMessage
             message={this.props.current_msgSub.chats_message[0].message}
             corr_message={corr.corrected_message}
 					/>
+				</div>
 					// <div>{corr.corrected_message}</div>
       ))
     )
@@ -64,12 +66,11 @@ export class CorrectionField extends Component{
 		console.log(this.props)
 		return(
 			<div>
-				<button onClick={this.go_back}>Back</button>
-				<h1>Correction Page</h1>
+				<h1><i onClick={this.go_back} class="arrow left"></i>Language Correction</h1>
 				
 				{this.props.current_msgSub.chats_message
-					?<div>
-						<div className='Message'>Original: {this.props.current_msgSub.chats_message[0].message}</div>
+					?<div className="correction">
+						<div className='Message'>{this.props.current_msgSub.chats_message[0].message}</div>
 						{k}
 						{this.props.location.state.corr
 							?<ChatInput

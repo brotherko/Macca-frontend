@@ -46,7 +46,7 @@ class ChatMessage extends Component {
         }
         {this.state.show
           ?<div>
-            <div className='Message'>Original: {this.props.message}</div>
+            <div className='Message'>{this.props.message}</div>
             {k}
           </div>
           :null

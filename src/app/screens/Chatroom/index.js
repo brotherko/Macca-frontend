@@ -101,19 +101,22 @@ export class Chatroom extends React.Component {
       <div>
         <h1><Link to='/select_chatroom'><i class="arrow left"></i></Link>Chatroom</h1>
         <div className="content">
-        {chats != null
-          ?<InterestDiff
-            members={chats.length > 0 ? chats[0].chat_members : null}
+        <div class="chat_area">
+          {chats != null
+            ?<InterestDiff
+              members={chats.length > 0 ? chats[0].chat_members : null}
+            />
+            :null
+          }
+          <ChatMessages
+            messages={this.props.chats_messageSub.chats_message || []}
+            endRef={this._endRef}
+            correction={this.correction}
+            user_id={this.state.sender}
+            history={this.props.history}
           />
-          :null
-        }
-        <ChatMessages
-          messages={this.props.chats_messageSub.chats_message || []}
-          endRef={this._endRef}
-          correction={this.correction}
-          user_id={this.state.sender}
-          history={this.props.history}
-        />
+
+        </div>
         <ChatInput
           message={this.state.message}
           onTextInput={(message) => this.setState({message})}

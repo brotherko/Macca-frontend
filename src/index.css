@@ -104,7 +104,7 @@ input[type=text] {
 background: #535460; /* Old browsers */
 background: -moz-linear-gradient(top, #535460 0%, #2e2e47 29%, #363651 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top, #535460 0%,#2e2e47 29%,#363651 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #535460 0%,#2e2e47 29%,#363651 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: linear-gradient(to bottom, #50436b 0%,#2e2e47 45%,#363651 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', endColorstr='#363651',GradientType=0 ); /* IE6-9 */
   border-radius: 10px;
   padding: 20px; 
@@ -168,10 +168,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
 
 }
 
+.chatroom_list .last_message{
+  padding: 0px 10px 5px;
+}
+
 .chatroom_list .item {
-  background: #FFF;
-  padding: 10px;
-  color: #000;
+  background: rgba(0,0,0,0.25);
+  padding: 15px;
+  color: #FFF;
+  border-radius: 20px;
   margin: 10px 0px;
 }
 
@@ -184,12 +189,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
 .chatroom_list .member img{
   margin-bottom: 7px;
   display: block;
-  width: 60px;
+  width: 50px;
   height: auto;
   border-radius: 50%;
 }
 
-.ChatMessage > div{
+.ChatMessage > div, .correction > .Message, .correction .display_diff{
   padding: 10px;
   margin: 0px 0px 10px 0px;
   min-width: 80px;
@@ -206,25 +211,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
   background: linear-gradient(45deg, #6a76cb 0%,#9577e1 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a76cb', endColorstr='#9577e1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
-.incoming_msg .ChatMessage > div {
+.incoming_msg .ChatMessage > div, .correction > .Message{
   background: #434662;
 }
-.sender_msg .ChatMessage > div {
+.sender_msg .ChatMessage > div, .correction .display_diff {
   background: #a2a6c7
 }
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.ChatMessages > div{
+  width: 100%;
+}
+.chat_area{
+  height: 510px;
+  overflow-y: auto; 
+}
+.ChatMessages > div > div, .correction .display_diff{
+  display: inline-block;
+}
+.Message{
+  text-align: left;
+}
 .ChatMessages > .incoming_msg {
-  float: left;
-  clear: left;
+  text-align: left;
 }
-.ChatMessages > .sender_msg{
-  float: right;
-  clear: right;
+.ChatMessages > .sender_msg, .correction .correct_msg{
+  text-align: right;
 }
-.ChatMessage .added {
-  border-bottom: 3px dashed green;
+.ChatMessages > .sender_msg > div{
+  text-align: left;
 }
-.ChatMessage .removed {
-  border-bottom: 3px dashed red;
+.added {
+  border-bottom: 3px solid green;
+}
+.removed {
+  border-bottom: 3px solid red;
   color: #a9a9a9;;
 }
 
