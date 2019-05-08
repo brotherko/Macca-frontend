@@ -10,7 +10,7 @@ class ChatMessages extends Component {
         <div className='ChatMessages'>
           {this.props.messages.map((message, i) => {
             return (
-            <div>
+            <div className={message.sender != this.props.user_id ? 'incoming_msg' : 'sender_msg'}>
               <ChatMessage
                 key={i}
                 message={message.message}
