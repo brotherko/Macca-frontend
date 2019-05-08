@@ -45,7 +45,10 @@ export class CorrectionField extends Component{
       }
     }
     return "";
-  }
+	}
+	go_back = () => {
+		this.props.history.goBack()
+	}
 	render() {
 		const { chats_correction } = this.props.chats_correctionSub
     const k = chats_correction && this.props.current_msgSub.chats_message ? (
@@ -61,6 +64,7 @@ export class CorrectionField extends Component{
 		console.log(this.state)
 		return(
 			<div>
+				<button onClick={this.go_back}>Back</button>
 				<h1>Correction Page</h1>
 				
 				{this.props.current_msgSub.chats_message
