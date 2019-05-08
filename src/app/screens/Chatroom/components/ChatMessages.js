@@ -5,12 +5,11 @@ class ChatMessages extends Component {
     
     render() {
       const {correction} = this.props
-      console.log(this.props.messages)
       return (
         <div className='ChatMessages'>
           {this.props.messages.map((message, i) => {
             return (
-            <div>
+            <div className={message.sender != this.props.user_id ? 'incoming_msg' : 'sender_msg'}>
               <ChatMessage
                 key={i}
                 message={message.message}

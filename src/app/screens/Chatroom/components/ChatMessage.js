@@ -1,31 +1,52 @@
 import React, { Component} from 'react'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import DiffMessage from './diffMessage';
 
 class ChatMessage extends Component {
-
+  constructor(props){
+    super(props)
+    this.state = {
+      show :false
+    }
+  }
+  
+  change_show = () => {
+    this.setState(state => ({
+      show: !state.show
+    }))
+  }
   render() {
     const { chats_correction } = this.props.chats_correctionSub
-    
+    const k = chats_correction ? (
+      chats_correction.map((corr, i) => (
+          <DiffMessage
+            message={this.props.message}
+            corr_message={corr.corrected_message}
+          />
+      ))
+    )
+    : null
     return (
       <div className='ChatMessage'>
-        {/* <div className='MessageHeader'>
-          <div className='Username'>{this.props.username}</div>
-          <div className='Time'>({ago})</div>
-        </div> */}
-        <div className='Message'>{this.props.message}</div>
-        {chats_correction
+        {chats_correction && chats_correction.length > 0
+          ?<div onClick={this.change_show} className="latest_message">
+            <DiffMessage
+              corr_message={chats_correction[chats_correction.length-1].corrected_message}
+              message={this.props.message}
+            />
+          </div>
+          :<div className='Message'>{this.props.message}</div>
+        }
+        {this.state.show
           ?<div>
-            {
-              chats_correction.map((corr, i) => {
-                return(
-                  <div>Correction: {corr.corrected_message}</div>
-                )
-              })
-            }
+            <div className='Message'>Original: {this.props.message}</div>
+            {k}
           </div>
           :null
+
         }
+        
       </div>
     )
   }
