@@ -103,7 +103,7 @@ export class Chatroom extends React.Component {
         <div className="content">
         {chats != null
           ?<InterestDiff
-            members={chats[0].chat_members}
+            members={chats.length > 0 ? chats[0].chat_members : null}
           />
           :null
         }

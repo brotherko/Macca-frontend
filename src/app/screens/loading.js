@@ -54,11 +54,14 @@ export default class Loading extends React.Component{
   render() {
     console.log(this.state)
     return(
-      <div class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+      <div>
+        <h1>Your perfect match is ...</h1>
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     )
   }
