@@ -61,6 +61,7 @@ export class CorrectionField extends Component{
       ))
     )
 		: null
+		console.log(this.props)
 		return(
 			<div>
 				<button onClick={this.go_back}>Back</button>
@@ -70,7 +71,7 @@ export class CorrectionField extends Component{
 					?<div>
 						<div className='Message'>Original: {this.props.current_msgSub.chats_message[0].message}</div>
 						{k}
-						{this.props.corr
+						{this.props.location.state.corr
 							?<ChatInput
 								message={this.state.correct_message != null ? this.state.correct_message : this.props.current_msgSub.chats_message[0].message}
 								onTextInput={(correct_message) => this.setState({correct_message})}
