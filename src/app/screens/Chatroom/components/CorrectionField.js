@@ -70,13 +70,16 @@ export class CorrectionField extends Component{
 					?<div>
 						<div className='Message'>Original: {this.props.current_msgSub.chats_message[0].message}</div>
 						{k}
-						<ChatInput
-							message={this.state.correct_message != null ? this.state.correct_message : this.props.current_msgSub.chats_message[0].message}
-							onTextInput={(correct_message) => this.setState({correct_message})}
-							onResetText={() => this.setState({correct_message: this.props.current_msgSub.chats_message[0].message, correct_message_id: this.props.location.state.message_id,})}
-							onSend={this._onCorrectionSend}
-							placeHolder='Correction'
-						/>
+						{this.props.corr
+							?<ChatInput
+								message={this.state.correct_message != null ? this.state.correct_message : this.props.current_msgSub.chats_message[0].message}
+								onTextInput={(correct_message) => this.setState({correct_message})}
+								onResetText={() => this.setState({correct_message: this.props.current_msgSub.chats_message[0].message, correct_message_id: this.props.location.state.message_id,})}
+								onSend={this._onCorrectionSend}
+								placeHolder='Correction'
+							/>
+							:null
+						}
 					</div>
 					:null
 				}
