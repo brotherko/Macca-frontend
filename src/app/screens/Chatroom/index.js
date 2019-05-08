@@ -5,6 +5,7 @@ import { graphql, compose } from 'react-apollo';
 import ChatInput from './components/ChatInput.js'
 import ChatMessages from './components/ChatMessages'
 import gql from 'graphql-tag';
+import InterestDiff from "./components/InterestDiff.js";
 
 export class Chatroom extends React.Component {
   constructor(props){
@@ -51,14 +52,14 @@ export class Chatroom extends React.Component {
   _onSend = () => {
     
     var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     this.props.insert_chat_messageMutation({
       variables: {
         message: this.state.message,
         // id: this.state.id,
         sender: this.state.sender,
         chat_id: 11,
-        created: date,
+        created: today,
       }
     })
   }
@@ -70,7 +71,7 @@ export class Chatroom extends React.Component {
     this.props.insert_correction_messageMutation({
       variables: {
         corrected_message: this.state.correct_message,
-        created: date,
+        created: today,
         message_id: this.state.correct_message_id,
         corrected_by: this.state.sender
       }
@@ -93,11 +94,13 @@ export class Chatroom extends React.Component {
   }
 
   render(){
-    const {chats_in_chatroom} = this.props
-    console.log(chats_in_chatroom)
+    const {chats} = this.props.chats_in_chatroom
     return(
       <div>
         <h1>Chatroom</h1>
+        <InterestDiff
+          members={chats ? chats[0].chat_members : null}
+        />
         <ChatMessages
           messages={this.props.chats_messageSub.chats_message || []}
           endRef={this._endRef}
