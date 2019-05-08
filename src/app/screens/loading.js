@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import '../../style/loading.css'
 
 import axios from 'axios';
 
@@ -53,7 +54,12 @@ export default class Loading extends React.Component{
   render() {
     console.log(this.state)
     return(
-      <h1>Loading</h1>
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     )
   }
 }
