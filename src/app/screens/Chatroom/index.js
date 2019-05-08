@@ -95,11 +95,12 @@ export class Chatroom extends React.Component {
 
   render(){
     const {chats} = this.props.chats_in_chatroom
+    console.log(chats)
     return(
       <div>
         <h1>Chatroom</h1>
         <InterestDiff
-          members={chats && this.props.chats_in_chatroom? chats[0].chat_members : null}
+          members={chats == [] ? chats[0].chat_members : null}
         />
         <ChatMessages
           messages={this.props.chats_messageSub.chats_message || []}
