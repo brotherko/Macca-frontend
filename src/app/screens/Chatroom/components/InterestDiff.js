@@ -4,12 +4,14 @@ export default class InterestDiff extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			interest_list: []
+			interest_list: [],
+			first: 1
 		}
 	}
 	componentDidUpdate(){
 		const {members} = this.props
-		if(members){
+		
+		if(members && this.state.first){
 			for(var i = 0; i < members[0].user_interests.length; i++){
 				var eq_interest = 1
 				for(var mem = 1; mem < members.length; mem++){
@@ -23,8 +25,8 @@ export default class InterestDiff extends Component{
 				if(eq_interest == members.length){
 					var tmp = members[0].user_interests[i].name.name
 					console.log(tmp)
-					this.setState(state => {
-						interest_list: state.interest_list.push(tmp)
+					this.setState({
+						interest_id: this.state.interest_list.push(tmp)
 					})
 				}
 				if(this.state.interest_list.length == 3){
@@ -32,11 +34,9 @@ export default class InterestDiff extends Component{
 				}
 				eq_interest = 0;
 			}
-
-
-
-
-
+			this.setState({
+				first: 0
+			})
 		}
 	}
 	render(){
@@ -44,8 +44,16 @@ export default class InterestDiff extends Component{
 		console.log(this.props)
 		return(
 			<div>
-				
+				Common interest in this room is 
+				{this.state.interest_list.map((name, i) => {
+					return(
+						<span> {name}</span>
+					)
+				})
+					
+				}
 			</div>
 		)
 	}
+
 }
