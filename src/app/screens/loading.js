@@ -18,7 +18,6 @@ export default class Loading extends React.Component{
     })
     axios.get('https://dry-coast-85220.herokuapp.com/matching?user_id=' + this.getCookie('user_id'))
       .then(res => {
-        // console.log(res.data.chat_id)
         this.setState({
           chat_id: res.data.chat_id
         })
@@ -52,7 +51,6 @@ export default class Loading extends React.Component{
     return "";
   }
   render() {
-    console.log(this.state)
     return(
       <div>
         <h1>Your perfect match is ...</h1>
