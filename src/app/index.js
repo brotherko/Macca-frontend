@@ -7,6 +7,7 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { AnimatedSwitch } from 'react-router-transition';
 
 //screens
 import Chatroom from "./screens/Chatroom"
@@ -49,6 +50,12 @@ class App extends React.Component {
     return(
       <ApolloProvider client={client}>
         <BrowserRouter>
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className="wrapper"
+          >
           <Route exact path="/" component={Login}/>
           <Route path="/select_chatroom" component={Select_Chatroom}/>
           <Route path="/new_user" component={New_user}/>
@@ -56,6 +63,7 @@ class App extends React.Component {
           <Route path="/interest" component={Select_Interest}/>
           <Route path="/lang" component={Select_Lang}/>
           <Route path="/loading" component={Loading}/>
+          </AnimatedSwitch>
         </BrowserRouter>
       </ApolloProvider>
     )
