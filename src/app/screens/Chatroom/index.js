@@ -141,7 +141,7 @@ const chats_message= gql`
 `
 
 const insert_chats_message = gql`
-  mutation insert_chats_message($chat_id: Int!, $created: date!, $message: String!, $sender: Int!) {
+  mutation insert_chats_message($chat_id: Int!, $created: timestamptz!, $message: String!, $sender: Int!) {
     insert_chats_message(objects: {chat_id: $chat_id, created: $created, message: $message, sender: $sender}) {
       returning {
         chat_id
@@ -154,7 +154,7 @@ const insert_chats_message = gql`
   }
 `
 const insert_correction_message = gql`
-  mutation insert_chats_correction($corrected_message: String!, $corrected_by: Int!, $created: date!, $message_id: Int!){
+  mutation insert_chats_correction($corrected_message: String!, $corrected_by: Int!, $created: timestamptz!, $message_id: Int!){
     insert_chats_correction(objects: {corrected_message: $corrected_message, corrected_by: $corrected_by, created: $created, message_id: $message_id}) {
       returning {
         corrected_message
