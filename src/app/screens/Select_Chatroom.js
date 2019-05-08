@@ -13,6 +13,9 @@ export class Select_Chatroom extends React.Component{
 			state: { chat_id: chat_id}
 		})
 	}
+	find_new_chatroom = () => {
+		this.props.history.push('/loading')
+	}
 
 	render() {
 		const {chats_members} = this.props.get_chatroomQuery;
@@ -34,6 +37,7 @@ export class Select_Chatroom extends React.Component{
 					</div>
 					:null
 				}
+				<button onClick={this.find_new_chatroom}>Search your new buddy</button>
 			</div>
 		)
 	}

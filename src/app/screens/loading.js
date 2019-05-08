@@ -26,12 +26,12 @@ export default class Loading extends React.Component{
     //set time to redirect to chat room
     this.timer = setTimeout(()=>{
       // redirect with chat_id
-      // this.props.history.push({
-      //   pathname: '/chatroom',
-      //   search: '?query=abc',
-      //   state: { chat_id: this.state.chat_id}
-      // })
-      this.props.history.push("/select_chatroom")
+      this.props.history.push({
+        pathname: '/chatroom',
+        search: '?query=abc',
+        state: { chat_id: this.state.chat_id}
+      })
+      // this.props.history.push("/chatroom")
     },5000); 
   }
   

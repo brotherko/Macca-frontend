@@ -58,7 +58,7 @@ export class Select_Lang extends React.Component{
 			}
 		})
 		//go to search page
-    this.props.history.push('/loading')
+    this.props.history.push('/select_chatroom')
 	}
 	render(){
 		const {native_lang, target_lang} = this.state
@@ -85,7 +85,7 @@ export class Select_Lang extends React.Component{
 							/>
 						</div>
 				</div>
-				<button onClick={this.handleFind}>Search for your buddy</button>
+				<button onClick={this.handleFind}>Continue</button>
 			</div>
 		)
 	} }
