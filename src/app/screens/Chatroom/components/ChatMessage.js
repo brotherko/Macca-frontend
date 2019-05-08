@@ -33,7 +33,10 @@ class ChatMessage extends Component {
       <div className='ChatMessage'>
         {chats_correction && chats_correction.length > 0
           ?<div onClick={this.change_show} className="latest_message">
-            {chats_correction[chats_correction.length-1].corrected_message}
+            <DiffMessage
+              corr_message={chats_correction[chats_correction.length-1].corrected_message}
+              message={this.props.message}
+            />
           </div>
           :<div className='Message'>{this.props.message}</div>
         }
