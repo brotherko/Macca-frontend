@@ -55,13 +55,16 @@ export class Select_Chatroom extends React.Component{
 		: (
 			<div>You havn't join any chatrooms yet. Let's do it by clicking the button below.</div>
 		)
+		const search_btn = this.props.search 
+						? <button className="big-button full" onClick={this.find_new_chatroom} >Search for new buddy</button>
+						: <button className="big-button full not_allow_match" disabled="true" onClick={this.find_new_chatroom}>Locked</button>
 		return(
 			<div class="chatroom_list">
 				<h1>Select Chatrooms</h1>
 				<div class="content">
 					{chats_list}
 					<div class="right-wrapper">
-						<button class="big-button full" onClick={this.find_new_chatroom} disabled={!this.props.search}>Search for new buddy</button>
+						{search_btn}
 					</div>
 				</div>
 			</div>

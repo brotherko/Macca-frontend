@@ -251,7 +251,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', end
   border-bottom: 3px solid red;
   color: #a9a9a9;;
 }
-
+.not_allow_match{
+  background: #CCC;
+}
 .display_diff > div{
   display:inline
 }
