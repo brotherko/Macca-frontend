@@ -42,7 +42,7 @@ label{
 }
 
 .big-button {
-  background: #55B8c8;
+  background: #6158e9;
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -87,7 +87,9 @@ input[type=text] {
   text-align: center;
   border-bottom: 3px #fff solid;
 }
-
+.full{
+  width: 100%;
+}
 .center{
  display: table-cell;
  vertical-align: middle; 
@@ -96,7 +98,14 @@ input[type=text] {
 }
 
 .phone_wrapper {
-  background:#14093d;
+  /* background:#14093d; */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#444662+0,2e2e47+29,363651+100 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#535460+0,2e2e47+29,363651+100 */
+background: #535460; /* Old browsers */
+background: -moz-linear-gradient(top, #535460 0%, #2e2e47 29%, #363651 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #535460 0%,#2e2e47 29%,#363651 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #535460 0%,#2e2e47 29%,#363651 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#535460', endColorstr='#363651',GradientType=0 ); /* IE6-9 */
   border-radius: 10px;
   padding: 20px; 
   width: 320px;
@@ -113,6 +122,17 @@ input[type=text] {
 }
 
 /* interest */
+.interest_counter{
+  display:inline-block;
+  color: #434662;
+  background: rgba(255,255,255, 0.7);
+  padding: 5px 8px;
+  margin-left: 5px;
+  /* width: 20px; */
+  /* height: 20px; */
+  border-radius: 50%;
+  font-size: 10px;
+}
 .interest_select{
   user-select: none;
   display: inline-block;
@@ -122,6 +142,11 @@ input[type=text] {
   background: #FFF;
   color: #000000;
   cursor: pointer;
+  transition: all 0.5s;
+}
+.interest_select span{
+  display: inline-block;
+  vertical-align: middle;
 }
 .interest_select.s-1{
   background:#EFFDD2
@@ -162,4 +187,47 @@ input[type=text] {
   width: 60px;
   height: auto;
   border-radius: 50%;
+}
+
+.ChatMessage > div{
+  padding: 10px;
+  margin: 0px 0px 5px 0px;
+  min-width: 80px;
+  max-width:200px;
+  border-radius: 13px;
+}
+.ChatMessage .Message{
+}
+.ChatMessage .latest_message{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6a76cb+0,9577e1+100 */
+  background: #6a76cb; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #6a76cb 0%, #9577e1 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #6a76cb 0%,#9577e1 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #6a76cb 0%,#9577e1 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a76cb', endColorstr='#9577e1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.incoming_msg .ChatMessage > div {
+  background: #434662;
+}
+.sender_msg .ChatMessage > div {
+  background: #a2a6c7
+}
+.ChatMessages > .incoming_msg {
+  float: left;
+  clear: left;
+}
+.ChatMessages > .sender_msg{
+  float: right;
+  clear: right;
+}
+.ChatMessage .added {
+  border-bottom: 3px dashed green;
+}
+.ChatMessage .removed {
+  border-bottom: 3px dashed red;
+  color: #a9a9a9;;
+}
+
+#display_diff > div{
+  display:inline
 }

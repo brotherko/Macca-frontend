@@ -81,7 +81,15 @@ export class Select_Interest extends React.Component {
 							{this.props.list_interestQuery.list_interests.map((interest, i) => {
 								let score = this.state.interest.hasOwnProperty(interest.id) ? this.state.interest[interest.id] : 0;
 								return(
-									<div className={"interest_select s-" + score} key={i} onClick={this.add_scale.bind(this, interest.id)}>{interest.name}</div>
+									<div
+										className={"interest_select s-" + score} 
+										key={i} 
+										onClick={this.add_scale.bind(this, interest.id)}>
+											<span>
+												{interest.name}
+											</span>
+											<div className="interest_counter">{score}</div>
+										</div>
 								)
 							})
 						}

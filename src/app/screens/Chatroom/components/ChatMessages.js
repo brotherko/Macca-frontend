@@ -19,7 +19,7 @@ class ChatMessages extends Component {
               {message.sender != this.props.user_id
                 ?<button onClick={correction.bind(this, message)}>Correction</button>
                 :null
-              }
+              } */}
             </div>
             )
           })}

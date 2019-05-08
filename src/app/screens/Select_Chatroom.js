@@ -21,7 +21,8 @@ export class Select_Chatroom extends React.Component{
 
 	render() {
 		const { chats } = this.props.get_chatroomQuery;
-		const chats_list = chats ? chats.map(({ id, chat_members, chat_messages }, i) => {
+		console.log('dllm', chats)
+		const chats_list = (chats != null) ? (chats.length >0) ? chats.map(({ id, chat_members, chat_messages }, i) => {
 			console.log(chat_messages)
 			const last_message = chat_messages[0];
 			const last_message_list = last_message 
@@ -51,14 +52,22 @@ export class Select_Chatroom extends React.Component{
 						</div>
 					</div>
 			)
-		}) : null
+		})
+		: (
+			<div>You havn't join any chatrooms yet. Let's do it by clicking the button below.</div>
+		)
+		: (
+			<div>You havn't join any chatrooms yet. Let's do it by clicking the button below.</div>
+		)
 		console.log(this.props)
 		return(
 			<div class="chatroom_list">
 				<h1>Select Chatrooms</h1>
 				<div class="content">
 					{chats_list}
-					<button onClick={this.find_new_chatroom} disabled={!this.props.search}>Search your new buddy</button>
+					<div class="right-wrapper">
+						<button class="big-button full" onClick={this.find_new_chatroom}>Search for new buddy</button>
+					</div>
 				</div>
 			</div>
 		)

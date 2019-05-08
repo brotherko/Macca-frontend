@@ -127,6 +127,7 @@ export class Chatroom extends React.Component {
           placeHolder='Correction'
         />
       </div>
+    </div>
     )
   }
 
