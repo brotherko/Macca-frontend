@@ -47,6 +47,20 @@ const client = new ApolloClient({ link, cache });
 
 
 class App extends React.Component {
+  state = {
+    search: true
+  }
+  changeSearch = () => {
+    this.setState({
+      search: false
+    })
+    setTimeout(
+      function() {
+          this.setState({search: false});
+      },
+      1500000
+    );
+  }
   render(){
     return(
       <ApolloProvider client={client}>
@@ -59,7 +73,9 @@ class App extends React.Component {
           >
           <Route exact path="/" component={Login}/>
           <Route path="/corr" component={CorrectionField}/>
-          <Route path="/select_chatroom" component={Select_Chatroom}/>
+          <Route path="/select_chatroom" 
+            render={(props) => <Select_Chatroom search={this.state.search} {...props} changeSearch={this.changeSearch}/>}
+          />
           <Route path="/new_user" component={New_user}/>
           <Route path="/chatroom" component={Chatroom} />
           <Route path="/interest" component={Select_Interest}/>

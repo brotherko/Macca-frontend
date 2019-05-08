@@ -14,8 +14,10 @@ export class Select_Chatroom extends React.Component{
 		})
 	}
 	find_new_chatroom = () => {
+		this.props.changeSearch()
 		this.props.history.push('/loading')
 	}
+	
 
 	render() {
 		const { chats } = this.props.get_chatroomQuery;
@@ -34,6 +36,7 @@ export class Select_Chatroom extends React.Component{
 					</div>
 				)
 			})
+			console.log(this.props)
 			return (
 					<div 
 						key={i}
@@ -55,7 +58,7 @@ export class Select_Chatroom extends React.Component{
 				<h1>Select Chatrooms</h1>
 				<div class="content">
 					{chats_list}
-					<button onClick={this.find_new_chatroom}>Search your new buddy</button>
+					<button onClick={this.find_new_chatroom} disabled={!this.props.search}>Search your new buddy</button>
 				</div>
 			</div>
 		)
