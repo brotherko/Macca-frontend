@@ -9,7 +9,8 @@ export default class DiffMessage extends Component{
   render(){
     const {corr_message, message} = this.props
     var color = '', span=''
-    var diff_result = diff.diffChars(message, corr_message)
+    var diff_result = diff.diffWordsWithSpace(message, corr_message)
+    console.log(diff_result)
       return(
         <div class="display_diff">
           {Object.keys(diff_result).map( i => {
