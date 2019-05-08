@@ -6,11 +6,11 @@ import {Link} from 'react-router-dom'
 export default class Login extends React.Component{
 	render(){
 		return(
-			<div>
-				<h1>Login</h1>
-        //////////////////
-        login input
-        <a href="/new_user">New user</a>
+			<div className="home center">
+				<h1>MACCA</h1>
+				<h2>Social Networking & Language Exchange</h2>
+        <a className="big-button" href="/new_user">Regiester</a>
+        <a className="big-button" href="/new_user">Login</a>
 			</div>
 		)
 	}
