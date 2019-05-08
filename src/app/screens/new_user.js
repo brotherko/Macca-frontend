@@ -22,7 +22,16 @@ export class New_user extends React.Component{
 			this.setState({
 				user_id: tmp
 			})
-			document.cookie = "user_id=" + this.state.user_id 
+			document.cookie = "user_id=" + this.state.user_id
+			//add a photo to the db
+			var icon = 'https://picsum.photos/id/' + this.state.user_id + '/200/200'
+      this.props.update_usersMutation({
+        variables: {
+          id: this.state.user_id,
+          icon: icon
+        }
+      })
+			//redirect to interest select
 			this.props.history.push("/interest")
 		})
 		//get the user_id (done above)
@@ -64,5 +73,15 @@ const insert_users = gql`
 		}
 	}
 `
+const update_users = gql`
+	mutation update_users($icon: String!, $id: Int!){
+		update_users(_set: {icon: $icon}, where: {id: {_eq: $id}}) {
+		affected_rows
+		}
+	}
+`
 
-export default graphql(insert_users, {name: "insert_usersMutation"})(New_user)
+export default compose(
+  graphql(insert_users, {name: "insert_usersMutation"}),
+  graphql(update_users, {name: "update_usersMutation"})
+)(New_user)
