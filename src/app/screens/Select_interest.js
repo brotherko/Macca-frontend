@@ -35,8 +35,12 @@ export class Select_Interest extends React.Component {
 				var newScale = this.state.interest[id]
 				newScale++
 				tmp[id] = newScale
+			}else if(this.state.interest[id] == 5){
+				tmp[id] = 0
 			}
-		}else{
+			
+		}
+		else{
 			tmp[id] = 1
 		}
 		this.setState({
@@ -75,7 +79,7 @@ export class Select_Interest extends React.Component {
 					{this.props.list_interestQuery.list_interests
 						?<div>
 							{this.props.list_interestQuery.list_interests.map((interest, i) => {
-								let score = this.state.interest.hasOwnProperty(i) ? this.state.interest[i] : 0;
+								let score = this.state.interest.hasOwnProperty(interest.id) ? this.state.interest[interest.id] : 0;
 								return(
 									<div className={"interest_select s-" + score} key={i} onClick={this.add_scale.bind(this, interest.id)}>{interest.name}</div>
 								)
