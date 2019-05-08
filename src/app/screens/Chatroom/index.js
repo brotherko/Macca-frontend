@@ -100,9 +100,12 @@ export class Chatroom extends React.Component {
       <div>
         <h1><Link to='/select_chatroom'><i class="arrow left"></i></Link>Chatroom</h1>
         <div className="content">
-        <InterestDiff
-          members={chats ? chats[0].chat_members : null}
-        />
+        {chats
+          ?<InterestDiff
+            members={chats ? chats[0].chat_members : null}
+          />
+          :null
+        }
         <ChatMessages
           messages={this.props.chats_messageSub.chats_message || []}
           endRef={this._endRef}
