@@ -9,7 +9,7 @@ export default class Login extends React.Component{
 			<div className="home center">
 				<h1>MACCA</h1>
 				<h2>Social Networking & Language Exchange</h2>
-				<Link to="/new_user" className="big-button">Register</Link>
+				<Link to="/new_user" className="big-button">Get Started</Link>
 			</div>
 		)
 	}

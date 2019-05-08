@@ -71,7 +71,7 @@ export class Select_Interest extends React.Component {
 		return(
 			<div>
 				<h1>Select your interest</h1>
-				<div className="interest_field">
+				<div className="interest_field content">
 					{this.props.list_interestQuery.list_interests
 						?<div>
 							{this.props.list_interestQuery.list_interests.map((interest, i) => {
@@ -85,7 +85,7 @@ export class Select_Interest extends React.Component {
 						:null
 					}
 				</div>
-				<div style={{textAlign: "right"}}>
+				<div className="right-wrapper">
 					<button class="big-button" onClick={this.next_stage}>Continue</button>
 				</div>
 			</div>

@@ -41,11 +41,13 @@ export class New_user extends React.Component{
 	render(){
 		console.log(this.props)
 		return(
-			<div className="register center">
-				<h2>What is your name?</h2>
+			<div className="register content">
+				<h1>Your Name?</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" value={this.state.name} onChange={this.handleChange}></input>
-					<button class="big-button">Next</button>
+					<div class="right-wrapper">
+						<button class="big-button">Next</button>
+					</div>
 				</form>
 			</div>
 		)

@@ -5,12 +5,42 @@ import gql from 'graphql-tag';
 import Select from 'react-select'
 
 
+const customStyles = {
+	input: (provided, state) => ({
+		...provided,
+		color: '#fff',
+		// borderColor: '#FFF',
+		// borderBottom: '3px solid #FFF',
+	}),
+	control: (provided, state) => ({
+		...provided,
+		borderColor: '#FFF',
+		borderWidth: '0px 0px 3px 0px',
+		backgroundColor: 'none',
+	}),
+	indicatorSeparator: () => ({
+		display: 'none'
+	}),
+	option: (provided) => ({
+		...provided,
+		color: "#14093d"
+	}),
+	placeholder: (provided) => ({
+		color: '#fff',
+		fontSize: '25px',
+	}),
+	singleValue: (provided, state) => ({
+		...provided,
+		color: '#FFF',
+		fontSize: '25px',
+	})
+}
 export class Select_Lang extends React.Component{
 	state = {
 		native_lang: null,
     target_lang: null,
     user_id: null
-  }
+	}
   componentDidMount(){
     this.setState({
       user_id: this.getCookie('user_id')
@@ -69,23 +99,27 @@ export class Select_Lang extends React.Component{
 		return(
 			<div>
 				<h1>Select Language</h1>
-				<div className="select">
+				<div className="content select">
 					<div>
 							<label>Select your native Language</label>
 							<Select
+								styles={customStyles}
 								value={native_lang}
 								onChange={this.handleNativeChange}
 								options={option}
 							/>
 							<label>Select your target learning Language</label>
 							<Select
+								styles={customStyles}
 								value={target_lang}
 								onChange={this.handleTargetChange}
 								options={option}
 							/>
 						</div>
 				</div>
-				<button onClick={this.handleFind}>Continue</button>
+				<div class="right-wrapper">
+					<button className="big-button" onClick={this.handleFind}>Continue</button>
+				</div>
 			</div>
 		)
 	} }
