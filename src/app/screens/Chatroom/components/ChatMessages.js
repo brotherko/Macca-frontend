@@ -15,6 +15,7 @@ class ChatMessages extends Component {
                   key={i}
                   message={message.message}
                   message_id={message.id}
+                  history={this.props.history}
                 />
               </div>
               {/* {message.sender != this.props.user_id
