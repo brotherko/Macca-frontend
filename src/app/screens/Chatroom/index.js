@@ -59,7 +59,7 @@ export class Chatroom extends React.Component {
         message: this.state.message,
         // id: this.state.id,
         sender: this.state.sender,
-        chat_id: 11,
+        chat_id: this.state.chat_id,
         created: today,
       }
     })
